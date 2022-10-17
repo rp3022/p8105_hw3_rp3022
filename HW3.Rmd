@@ -211,7 +211,7 @@ Outliers : outliers can be observed in the graph. The most extreme outlier was -
 
 * Making 2 panel plots for tmax vs tmin and snowfall
 
-```{r tmin vs tmax and snowfall plot}
+```{r tmin vs tmax and snowfall plot, message = FALSE}
 tmin_max_plot = ny_tidy %>% 
   ggplot (aes (x= tmax, y = tmin))+
   geom_hex()+
@@ -237,6 +237,11 @@ snowfall_plot = ny_tidy %>%
 
 snowfall_plot
 ```
-```{r patchwork}
+```{r patchwork, message=FALSE}
 tmin_max_plot + snowfall_plot
 ```
+
+* Hexagon plot was used for tmax vs tmin for full dataset
+
+* Density ridges plot was used for distribution of snowfall >0 and <100 mm separately by year
+

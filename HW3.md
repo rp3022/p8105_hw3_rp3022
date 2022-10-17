@@ -360,14 +360,15 @@ snowfall_plot = ny_tidy %>%
 snowfall_plot
 ```
 
-    ## Picking joint bandwidth of 3.76
-
 <img src="HW3_files/figure-gfm/tmin vs tmax and snowfall plot-2.png" width="90%" />
 
 ``` r
 tmin_max_plot + snowfall_plot
 ```
 
-    ## Picking joint bandwidth of 3.76
-
 <img src="HW3_files/figure-gfm/patchwork-1.png" width="90%" />
+
+-   Hexagon plot was used for tmax vs tmin for full dataset
+
+-   Density ridges plot was used for distribution of snowfall \>0 and
+    \<100 mm separately by year
