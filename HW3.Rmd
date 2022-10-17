@@ -148,7 +148,7 @@ ggplot(plot_acc, aes(x = hour, y = physical_activity, color = day))+
 
 ## Problem 3
 
-```{r}
+```{r ny_noaa}
 data ("ny_noaa")
 ny_noaa = ny_noaa %>% 
   as_tibble(ny_noaa)
@@ -158,7 +158,7 @@ ny_noaa = ny_noaa %>%
 * There are `r ncol(ny_noaa)` rows(observations) and `r nrow(ny_noaa)` columns variables in this dataset. Each row refers to   a single daily observation from a weather station in the US.
 
 * The dataset has variables `r colnames(ny_noaa)` corresponding to id, date, precipitation (tenths of mm), snow fall (mm),    snow depth (mm), maximum and minimum temperature (tenths of degrees C), respectively.
-* Large amounts of missing data can be seen for variables tmax, tmin, prcp, snow and snwd 
+* Large amounts of missing data can be seen for variables tmax, tmin, prcp, snow and snwd which can be an issue 
 
   * The tmax variable is missing `r sum(is.na(ny_noaa$tmax))` observations. 
 
@@ -166,7 +166,21 @@ ny_noaa = ny_noaa %>%
 
   * The prcp (precipitation) variable has `r sum(is.na(ny_noaa$prcp))` missing  observations. 
    
-  * The snow (snowfall) variable has`r sum(is.na(ny_noaa$snow))` missing observations. 
+  * The snow (snowfall) variable has `r sum(is.na(ny_noaa$snow))` missing observations. 
 
   * The snwd (snow depth) variable has `r sum(is.na(ny_noaa$snwd))` missing observations.
+  
+```{r tidy r_noaa}
+ny_tidy = ny_noaa %>% 
+  janitor::clean_names() %>%
+  separate (col = date, into = c("year", "month", "day"), sep = '-', convert = TRUE) %>% 
+  mutate(month = month.abb[month],
+         tmax = as.numeric(tmax),
+         tmin = as.numeric(tmin),
+         prcp = prcp/10) %>% 
+  select (id, year, month, day, everything()) %>%
+  mutate(tmax = tmax/10, tmin = tmin/10)
+``` 
+For snowfall, the most commonly observed value is **`r names(which.max(table(ny_tidy$snow)))`**. Since most days of the year do not experience snow fall, it makes sense for 0 to be the most commonly observed value.
+  
 

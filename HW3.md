@@ -271,7 +271,7 @@ Data summary
     degrees C), respectively.
 
 -   Large amounts of missing data can be seen for variables tmax, tmin,
-    prcp, snow and snwd
+    prcp, snow and snwd which can be an issue
 
     -   The tmax variable is missing 1134358 observations.
 
@@ -280,6 +280,22 @@ Data summary
     -   The prcp (precipitation) variable has 145838 missing
         observations.
 
-    -   The snow (snowfall) variable has381221 missing observations.
+    -   The snow (snowfall) variable has 381221 missing observations.
 
     -   The snwd (snow depth) variable has 591786 missing observations.
+
+``` r
+ny_tidy = ny_noaa %>% 
+  janitor::clean_names() %>%
+  separate (col = date, into = c("year", "month", "day"), sep = '-', convert = TRUE) %>% 
+  mutate(month = month.abb[month],
+         tmax = as.numeric(tmax),
+         tmin = as.numeric(tmin),
+         prcp = prcp/10) %>% 
+  select (id, year, month, day, everything()) %>%
+  mutate(tmax = tmax/10, tmin = tmin/10)
+```
+
+For snowfall, the most commonly observed value is **0**. Since most days
+of the year do not experience snow fall, it makes sense for 0 to be the
+most commonly observed value.
