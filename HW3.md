@@ -134,3 +134,40 @@ acc_df = read_csv("data/accel_data.csv") %>%
   mutate(minute_act = as.numeric (minute_act),
          day_type = case_when(day == "MOnday"~"weekday", day == "Tuesday"~"weekday",day == "Wednesday"~"weekday",day == "Thursday"~"weekday",day == "Friday"~"weekday",day == "Saturday"~"weekend", day == "Sunday"~"weekend"))
 ```
+
+### describing the dataset
+
+|                                                  |        |
+|:-------------------------------------------------|:-------|
+| Name                                             | acc_df |
+| Number of rows                                   | 50400  |
+| Number of columns                                | 6      |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   |        |
+| Column type frequency:                           |        |
+| character                                        | 2      |
+| numeric                                          | 4      |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |        |
+| Group variables                                  | None   |
+
+Data summary
+
+**Variable type: character**
+
+| skim_variable | n_missing | complete_rate | min | max | empty | n_unique | whitespace |
+|:--------------|----------:|--------------:|----:|----:|------:|---------:|-----------:|
+| day           |         0 |          1.00 |   6 |   9 |     0 |        7 |          0 |
+| day_type      |      7200 |          0.86 |   7 |   7 |     0 |        2 |          0 |
+
+**Variable type: numeric**
+
+| skim_variable     | n_missing | complete_rate |   mean |     sd |  p0 |    p25 |   p50 |     p75 | p100 | hist  |
+|:------------------|----------:|--------------:|-------:|-------:|----:|-------:|------:|--------:|-----:|:------|
+| week              |         0 |             1 |   3.00 |   1.41 |   1 |   2.00 |   3.0 |    4.00 |    5 | ▇▇▇▇▇ |
+| day_id            |         0 |             1 |  18.00 |  10.10 |   1 |   9.00 |  18.0 |   27.00 |   35 | ▇▇▇▇▇ |
+| minute_act        |         0 |             1 | 720.50 | 415.70 |   1 | 360.75 | 720.5 | 1080.25 | 1440 | ▇▇▇▇▇ |
+| physical_activity |         0 |             1 | 267.04 | 443.16 |   1 |   1.00 |  74.0 |  364.00 | 8982 | ▇▁▁▁▁ |
+
+-   This dataset contains **50400** rows(observations) and **6**
+    columns(variables).
+-   The dataset has variables **week, day_id, day, minute_act,
+    physical_activity, day_type**

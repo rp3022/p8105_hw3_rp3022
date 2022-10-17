@@ -109,3 +109,12 @@ acc_df = read_csv("data/accel_data.csv") %>%
   mutate(minute_act = as.numeric (minute_act),
          day_type = case_when(day == "MOnday"~"weekday", day == "Tuesday"~"weekday",day == "Wednesday"~"weekday",day == "Thursday"~"weekday",day == "Friday"~"weekday",day == "Saturday"~"weekend", day == "Sunday"~"weekend"))
 ```
+
+### describing the dataset
+
+`r skimr::skim(acc_df)`
+
+* This dataset contains **`r nrow(acc_df)`** rows(observations) and **`r ncol(acc_df)`** columns(variables). 
+* The dataset has variables **`r colnames(acc_df)`**
+
+
