@@ -312,10 +312,16 @@ ny_jan_july = ny_tidy %>%
   labs(
     title = "Avg max temperature in Jan and July",
     x = "Year",
-    Y = "Average max temerature(C) "
+    Y = "Average max temperature(C) "
   )
   
  ny_jan_july 
 ```
 
-<img src="HW3_files/figure-gfm/plot-1.png" width="90%" />
+<img src="HW3_files/figure-gfm/plot-1.png" width="90%" /> \* Comparing
+the scatterplot for January and July, we can see that the maximum
+temperatures in January are much lower compared to the maximum
+temperatures in July. Moreover January has a wider range of temperatures
+as compared to July. \* Outliers : outliers can be observed in the
+graph. The most extreme outlier was -14 degrees celsius for January and
+14 degrees celsius for July.
