@@ -300,6 +300,9 @@ For snowfall, the most commonly observed value is **0**. Since most days
 of the year do not experience snow fall, it makes sense for 0 to be the
 most commonly observed value.
 
+-   Making 2 panel plots for maximum temperatures in Jan and July across
+    all stations
+
 ``` r
 ny_jan_july = ny_tidy %>%
   group_by(id, year, month) %>%
@@ -318,10 +321,53 @@ ny_jan_july = ny_tidy %>%
  ny_jan_july 
 ```
 
-<img src="HW3_files/figure-gfm/plot-1.png" width="90%" /> \* Comparing
-the scatterplot for January and July, we can see that the maximum
+<img src="HW3_files/figure-gfm/plot-1.png" width="90%" /> Comparing the
+scatterplot for January and July, we can see that the maximum
 temperatures in January are much lower compared to the maximum
 temperatures in July. Moreover January has a wider range of temperatures
-as compared to July. \* Outliers : outliers can be observed in the
-graph. The most extreme outlier was -14 degrees celsius for January and
-14 degrees celsius for July.
+as compared to July. Outliers : outliers can be observed in the graph.
+The most extreme outlier was -14 degrees celsius for January and 14
+degrees celsius for July.
+
+-   Making 2 panel plots for tmax vs tmin and snowfall
+
+``` r
+tmin_max_plot = ny_tidy %>% 
+  ggplot (aes (x= tmax, y = tmin))+
+  geom_hex()+
+  theme (legend.position = "right")+
+  labs(
+    title ="Maximum Temperature vs Minimum Temperature",
+    X = "tmax (c)",
+    Y = "tmin (c)")
+
+  tmin_max_plot 
+```
+
+<img src="HW3_files/figure-gfm/tmin vs tmax and snowfall plot-1.png" width="90%" />
+
+``` r
+snowfall_plot = ny_tidy %>%
+  filter(snow>0 & snow<100) %>% 
+  ggplot(aes(x=snow, y = year, color = factor(year)))+
+  geom_density_ridges(alpha =.5)+
+  labs(
+    title = "Distribution of snowfall between values 0 and 100 in NY",
+    X = "Snowfall(mm)",
+    Y =  "Density"
+  )
+
+snowfall_plot
+```
+
+    ## Picking joint bandwidth of 3.76
+
+<img src="HW3_files/figure-gfm/tmin vs tmax and snowfall plot-2.png" width="90%" />
+
+``` r
+tmin_max_plot + snowfall_plot
+```
+
+    ## Picking joint bandwidth of 3.76
+
+<img src="HW3_files/figure-gfm/patchwork-1.png" width="90%" />

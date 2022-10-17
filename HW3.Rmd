@@ -170,6 +170,7 @@ ny_noaa = ny_noaa %>%
 
   * The snwd (snow depth) variable has `r sum(is.na(ny_noaa$snwd))` missing observations.
   
+
 ```{r tidy r_noaa}
 ny_tidy = ny_noaa %>% 
   janitor::clean_names() %>%
@@ -182,6 +183,10 @@ ny_tidy = ny_noaa %>%
   mutate(tmax = tmax/10, tmin = tmin/10)
 ``` 
 For snowfall, the most commonly observed value is **`r names(which.max(table(ny_tidy$snow)))`**. Since most days of the year do not experience snow fall, it makes sense for 0 to be the most commonly observed value.
+
+
+* Making 2 panel plots for maximum temperatures in Jan and July across all stations  
+
 
 ```{r plot, message = FALSE}
 ny_jan_july = ny_tidy %>%
@@ -200,6 +205,38 @@ ny_jan_july = ny_tidy %>%
   
  ny_jan_july 
 ```
-* Comparing the scatterplot for January and July, we can see that the maximum temperatures in January are much lower compared     to the maximum temperatures in July.  Moreover January has a wider range of temperatures as compared to July.
-* Outliers : outliers can be observed in the graph. The most extreme outlier was -14 degrees celsius for January and 14        degrees celsius for July.
+Comparing the scatterplot for January and July, we can see that the maximum temperatures in January are much lower compared  to the maximum temperatures in July.  Moreover January has a wider range of temperatures as compared to July.
+Outliers : outliers can be observed in the graph. The most extreme outlier was -14 degrees celsius for January and 14        degrees celsius for July.
 
+
+* Making 2 panel plots for tmax vs tmin and snowfall
+
+```{r tmin vs tmax and snowfall plot}
+tmin_max_plot = ny_tidy %>% 
+  ggplot (aes (x= tmax, y = tmin))+
+  geom_hex()+
+  theme (legend.position = "right")+
+  labs(
+    title ="Maximum Temperature vs Minimum Temperature",
+    X = "tmax (c)",
+    Y = "tmin (c)")
+
+  tmin_max_plot 
+    
+  
+
+snowfall_plot = ny_tidy %>%
+  filter(snow>0 & snow<100) %>% 
+  ggplot(aes(x=snow, y = year, color = factor(year)))+
+  geom_density_ridges(alpha =.5)+
+  labs(
+    title = "Distribution of snowfall between values 0 and 100 in NY",
+    X = "Snowfall(mm)",
+    Y =  "Density"
+  )
+
+snowfall_plot
+```
+```{r patchwork}
+tmin_max_plot + snowfall_plot
+```
