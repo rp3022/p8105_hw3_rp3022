@@ -117,6 +117,7 @@ acc_df = read_csv("data/accel_data.csv") %>%
 * This dataset contains **`r nrow(acc_df)`** rows(observations) and **`r ncol(acc_df)`** columns(variables). 
 * The dataset has variables **`r colnames(acc_df)`**
 
+Aggregating across minutes to find total activity for each day
 
 ```{r accelerometer sum, message = FALSE}
 sum_acc = acc_df %>%
@@ -132,6 +133,6 @@ sum_acc %>%
   knitr::kable()
 
 ```
-
+Based on the results it can be seen that the physical activity(in minutes) was higher on Wednesday and Thursday and **highest on Friday**. The activity is **least on Saturday**
 
 

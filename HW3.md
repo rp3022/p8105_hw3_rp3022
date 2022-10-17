@@ -172,6 +172,8 @@ Data summary
 -   The dataset has variables **week, day_id, day, minute_act,
     physical_activity, day_type**
 
+Aggregating across minutes to find total activity for each day
+
 ``` r
 sum_acc = acc_df %>%
   select(everything()) %>%
@@ -189,3 +191,7 @@ sum_acc %>%
 |  Monday | Tuesday | Wednesday | Thursday |  Friday | Saturday |  Sunday |
 |--------:|--------:|----------:|---------:|--------:|---------:|--------:|
 | 1858699 | 1799238 |   2129772 |  2091151 | 2291711 |  1369237 | 1919213 |
+
+Based on the results it can be seen that the physical activity(in
+minutes) was higher on Wednesday and Thursday and **highest on Friday**.
+The activity is **least on Saturday**
