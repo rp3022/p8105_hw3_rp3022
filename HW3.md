@@ -171,3 +171,21 @@ Data summary
     columns(variables).
 -   The dataset has variables **week, day_id, day, minute_act,
     physical_activity, day_type**
+
+``` r
+sum_acc = acc_df %>%
+  select(everything()) %>%
+  group_by (day) %>% 
+  summarise(total_activity = sum(physical_activity)) %>% 
+  pivot_wider(
+    names_from = day,
+    values_from = total_activity) %>% 
+  select( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") 
+
+sum_acc %>%   
+  knitr::kable()
+```
+
+|  Monday | Tuesday | Wednesday | Thursday |  Friday | Saturday |  Sunday |
+|--------:|--------:|----------:|---------:|--------:|---------:|--------:|
+| 1858699 | 1799238 |   2129772 |  2091151 | 2291711 |  1369237 | 1919213 |
