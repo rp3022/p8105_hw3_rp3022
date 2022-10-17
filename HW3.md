@@ -260,3 +260,26 @@ Data summary
 | prcp          |    145838 |          0.94 | 29.82 |  78.18 |   0 |   0 |   0 |  23 | 22860 | ▇▁▁▁▁ |
 | snow          |    381221 |          0.85 |  4.99 |  27.22 | -13 |   0 |   0 |   0 | 10160 | ▇▁▁▁▁ |
 | snwd          |    591786 |          0.77 | 37.31 | 113.54 |   0 |   0 |   0 |   0 |  9195 | ▇▁▁▁▁ |
+
+-   There are 7 rows(observations) and 2595176 columns variables in this
+    dataset. Each row refers to a single daily observation from a
+    weather station in the US.
+
+-   The dataset has variables id, date, prcp, snow, snwd, tmax, tmin
+    corresponding to id, date, precipitation (tenths of mm), snow fall
+    (mm), snow depth (mm), maximum and minimum temperature (tenths of
+    degrees C), respectively.
+
+-   Large amounts of missing data can be seen for variables tmax, tmin,
+    prcp, snow and snwd
+
+    -   The tmax variable is missing 1134358 observations.
+
+    -   The tmin variable has 1134420 missing observations.
+
+    -   The prcp (precipitation) variable has 145838 missing
+        observations.
+
+    -   The snow (snowfall) variable has381221 missing observations.
+
+    -   The snwd (snow depth) variable has 591786 missing observations.

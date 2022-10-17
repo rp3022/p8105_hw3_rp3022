@@ -155,3 +155,18 @@ ny_noaa = ny_noaa %>%
 ```
 `r skimr:: skim(ny_noaa)`
 
+* There are `r ncol(ny_noaa)` rows(observations) and `r nrow(ny_noaa)` columns variables in this dataset. Each row refers to   a single daily observation from a weather station in the US.
+
+* The dataset has variables `r colnames(ny_noaa)` corresponding to id, date, precipitation (tenths of mm), snow fall (mm),    snow depth (mm), maximum and minimum temperature (tenths of degrees C), respectively.
+* Large amounts of missing data can be seen for variables tmax, tmin, prcp, snow and snwd 
+
+  * The tmax variable is missing `r sum(is.na(ny_noaa$tmax))` observations. 
+
+  * The tmin variable has `r sum(is.na(ny_noaa$tmin))` missing observations.
+
+  * The prcp (precipitation) variable has `r sum(is.na(ny_noaa$prcp))` missing  observations. 
+   
+  * The snow (snowfall) variable has`r sum(is.na(ny_noaa$snow))` missing observations. 
+
+  * The snwd (snow depth) variable has `r sum(is.na(ny_noaa$snwd))` missing observations.
+
