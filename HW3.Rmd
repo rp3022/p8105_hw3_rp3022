@@ -135,4 +135,12 @@ sum_acc %>%
 ```
 Based on the results it can be seen that the physical activity(in minutes) was higher on Wednesday and Thursday and **highest on Friday**. The activity is **least on Saturday**
 
+```{r plot accelerometer}
+plot_acc =acc_df %>% 
+  mutate(hour= minute_act/60)
+ggplot(plot_acc, aes(x = hour, y = physical_activity, color = day))+
+  geom_point(alpha = .5)+geom_line()
+
+```
+
 
