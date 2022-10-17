@@ -119,3 +119,18 @@ instacart %>%
 |:-----------------|------:|------:|------:|------:|------:|------:|------:|
 | Coffee Ice Cream | 13.77 | 14.32 | 15.38 | 15.32 | 15.22 | 12.26 | 13.83 |
 | Pink Lady Apples | 13.44 | 11.36 | 11.70 | 14.25 | 11.55 | 12.78 | 11.94 |
+
+## Problem 2
+
+Tidying the accelerometer data
+
+``` r
+acc_df = read_csv("data/accel_data.csv") %>%
+  janitor::clean_names() %>% 
+  pivot_longer(activity_1:activity_1440,
+               names_to = "minute_act",
+               names_prefix = "activity_",
+               values_to = "physical_activity") %>% 
+  mutate(minute_act = as.numeric (minute_act),
+         day_type = case_when(day == "MOnday"~"weekday", day == "Tuesday"~"weekday",day == "Wednesday"~"weekday",day == "Thursday"~"weekday",day == "Friday"~"weekday",day == "Saturday"~"weekend", day == "Sunday"~"weekend"))
+```
