@@ -299,3 +299,23 @@ ny_tidy = ny_noaa %>%
 For snowfall, the most commonly observed value is **0**. Since most days
 of the year do not experience snow fall, it makes sense for 0 to be the
 most commonly observed value.
+
+``` r
+ny_jan_july = ny_tidy %>%
+  group_by(id, year, month) %>%
+  summarise(tmax_avg = mean(tmax), na.rm = TRUE) %>%
+  filter(month %in% c("Jan", "Jul")) %>%
+  ggplot(aes(x=year, y = tmax_avg, color =id))+
+  geom_point(alpha = 0.5) +
+  theme(legend.position ="none")+
+  facet_grid(.~month) +
+  labs(
+    title = "Avg max temperature in Jan and July",
+    x = "Year",
+    Y = "Average max temerature(C) "
+  )
+  
+ ny_jan_july 
+```
+
+<img src="HW3_files/figure-gfm/plot-1.png" width="90%" />
