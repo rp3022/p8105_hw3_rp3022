@@ -146,4 +146,12 @@ ggplot(plot_acc, aes(x = hour, y = physical_activity, color = day))+
 * From the graph, it can be seen  that the physical activity increases everyday after 5:00 am. It remains almost constant     throughout the day and peaks at 7:00 pm i.e 19:00 hours. Maximum activity can be seen from 7:00 pm to 11: 00 pm i.e 19:00   hrs to 23:00. Least activity is seen from 12:00 am to 5:00 am most likely because individual is sleeping during that time   period.
 * The physical activity trend differs by day too. On Sunday maximum activity can be observed from 10 am to 12 pm whereas on   Fridays maximum activity can be observed from 8 pm to 10 pm( 20:00 hrs to 22:00 hrs)
 
+## Problem 3
+
+```{r}
+data ("ny_noaa")
+ny_noaa = ny_noaa %>% 
+  as_tibble(ny_noaa)
+```
+`r skimr:: skim(ny_noaa)`
 

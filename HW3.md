@@ -215,3 +215,48 @@ ggplot(plot_acc, aes(x = hour, y = physical_activity, color = day))+
     activity can be observed from 10 am to 12 pm whereas on Fridays
     maximum activity can be observed from 8 pm to 10 pm( 20:00 hrs to
     22:00 hrs)
+
+## Problem 3
+
+``` r
+data ("ny_noaa")
+ny_noaa = ny_noaa %>% 
+  as_tibble(ny_noaa)
+```
+
+|                                                  |         |
+|:-------------------------------------------------|:--------|
+| Name                                             | ny_noaa |
+| Number of rows                                   | 2595176 |
+| Number of columns                                | 7       |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   |         |
+| Column type frequency:                           |         |
+| character                                        | 3       |
+| Date                                             | 1       |
+| numeric                                          | 3       |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |         |
+| Group variables                                  | None    |
+
+Data summary
+
+**Variable type: character**
+
+| skim_variable | n_missing | complete_rate | min | max | empty | n_unique | whitespace |
+|:--------------|----------:|--------------:|----:|----:|------:|---------:|-----------:|
+| id            |         0 |          1.00 |  11 |  11 |     0 |      747 |          0 |
+| tmax          |   1134358 |          0.56 |   1 |   4 |     0 |      532 |          0 |
+| tmin          |   1134420 |          0.56 |   1 |   4 |     0 |      548 |          0 |
+
+**Variable type: Date**
+
+| skim_variable | n_missing | complete_rate | min        | max        | median     | n_unique |
+|:--------------|----------:|--------------:|:-----------|:-----------|:-----------|---------:|
+| date          |         0 |             1 | 1981-01-01 | 2010-12-31 | 1997-01-21 |    10957 |
+
+**Variable type: numeric**
+
+| skim_variable | n_missing | complete_rate |  mean |     sd |  p0 | p25 | p50 | p75 |  p100 | hist  |
+|:--------------|----------:|--------------:|------:|-------:|----:|----:|----:|----:|------:|:------|
+| prcp          |    145838 |          0.94 | 29.82 |  78.18 |   0 |   0 |   0 |  23 | 22860 | ▇▁▁▁▁ |
+| snow          |    381221 |          0.85 |  4.99 |  27.22 | -13 |   0 |   0 |   0 | 10160 | ▇▁▁▁▁ |
+| snwd          |    591786 |          0.77 | 37.31 | 113.54 |   0 |   0 |   0 |   0 |  9195 | ▇▁▁▁▁ |
