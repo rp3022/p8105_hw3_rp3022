@@ -122,18 +122,18 @@ Aggregating across minutes to find total activity for each day
 ```{r accelerometer sum, message = FALSE}
 sum_acc = acc_df %>%
   select(everything()) %>%
-  group_by (day) %>% 
+  group_by (week, day) %>% 
   summarise(total_activity = sum(physical_activity)) %>% 
   pivot_wider(
     names_from = day,
     values_from = total_activity) %>% 
-  select( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") 
+  select( "week", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") 
 
 sum_acc %>%   
   knitr::kable()
 
 ```
-Based on the results it can be seen that the physical activity(in minutes) was higher on Wednesday and Thursday and **highest on Friday**. The activity is **least on Saturday**
+Based on the results it can be seen that the physical activity(in minutes) appears to be higher on Wednesday, Thursday and Friday. **The highest aggregate activity across all weeks was seen on Friday and least was on Saturday.**
 
 ```{r plot accelerometer}
 plot_acc =acc_df %>% 
@@ -206,7 +206,7 @@ ny_jan_july = ny_tidy %>%
  ny_jan_july 
 ```
 Comparing the scatterplot for January and July, we can see that the maximum temperatures in January are much lower compared  to the maximum temperatures in July.  Moreover January has a wider range of temperatures as compared to July.
-Outliers : outliers can be observed in the graph. The most extreme outlier was -14 degrees celsius for January and 14        degrees celsius for July.
+Outliers : outliers can be observed in the graph. The most extreme outlier was -14 degrees celsius in 1982 for January and 14            degrees celsius in 1988 for July. Other temperatures that may be considered  outliers(based on their year) were -8            degrees celsius in 2008 January and 18 degrees celsius in 2004(July)
 
 
 * Making 2 panel plots for tmax vs tmin and snowfall

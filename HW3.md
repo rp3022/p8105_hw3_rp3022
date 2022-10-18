@@ -177,24 +177,29 @@ Aggregating across minutes to find total activity for each day
 ``` r
 sum_acc = acc_df %>%
   select(everything()) %>%
-  group_by (day) %>% 
+  group_by (week, day) %>% 
   summarise(total_activity = sum(physical_activity)) %>% 
   pivot_wider(
     names_from = day,
     values_from = total_activity) %>% 
-  select( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") 
+  select( "week", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") 
 
 sum_acc %>%   
   knitr::kable()
 ```
 
-|  Monday | Tuesday | Wednesday | Thursday |  Friday | Saturday |  Sunday |
-|--------:|--------:|----------:|---------:|--------:|---------:|--------:|
-| 1858699 | 1799238 |   2129772 |  2091151 | 2291711 |  1369237 | 1919213 |
+| week |    Monday |  Tuesday | Wednesday | Thursday |   Friday | Saturday | Sunday |
+|-----:|----------:|---------:|----------:|---------:|---------:|---------:|-------:|
+|    1 |  78828.07 | 307094.2 |    340115 | 355923.6 | 480542.6 |   376254 | 631105 |
+|    2 | 295431.00 | 423245.0 |    440962 | 474048.0 | 568839.0 |   607175 | 422018 |
+|    3 | 685910.00 | 381507.0 |    468869 | 371230.0 | 467420.0 |   382928 | 467052 |
+|    4 | 409450.00 | 319568.0 |    434460 | 340291.0 | 154049.0 |     1440 | 260617 |
+|    5 | 389080.00 | 367824.0 |    445366 | 549658.0 | 620860.0 |     1440 | 138421 |
 
 Based on the results it can be seen that the physical activity(in
-minutes) was higher on Wednesday and Thursday and **highest on Friday**.
-The activity is **least on Saturday**
+minutes) appears to be higher on Wednesday, Thursday and Friday. **The
+highest aggregate activity across all weeks was seen on Friday and least
+was on Saturday.**
 
 ``` r
 plot_acc =acc_df %>% 
@@ -326,8 +331,10 @@ scatterplot for January and July, we can see that the maximum
 temperatures in January are much lower compared to the maximum
 temperatures in July. Moreover January has a wider range of temperatures
 as compared to July. Outliers : outliers can be observed in the graph.
-The most extreme outlier was -14 degrees celsius for January and 14
-degrees celsius for July.
+The most extreme outlier was -14 degrees celsius in 1982 for January and
+14 degrees celsius in 1988 for July. Other temperatures that may be
+considered outliers(based on their year) were -8 degrees celsius in 2008
+January and 18 degrees celsius in 2004(July)
 
 -   Making 2 panel plots for tmax vs tmin and snowfall
 
